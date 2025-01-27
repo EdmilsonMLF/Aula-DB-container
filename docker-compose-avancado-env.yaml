@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_advanced
+    restart: always
+    shm_size: "512m"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 8192
+        hard: 16384
+    sysctls:
+      net.core.somaxconn: 1024
+      kernel.shmmax: 268435456
+      kernel.shmall: 2097152
+    mem_limit: "2g"
+    mem_reservation: "1g"
+    cpus: "1.5"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    tmpfs:
+      - /tmp
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

@@ -1,0 +1,62 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_dw
+    restart: always
+    shm_size: "1g"          # Aumenta o tamanho da memória compartilhada
+    ulimits:                # Limites de recursos do container
+      nproc: 65535          # Número máximo de processos
+      nofile:               # Número máximo de arquivos abertos
+        soft: 8192          # Limite "soft" de arquivos abertos
+        hard: 16384         # Limite "hard" de arquivos abertos
+    mem_limit: "8g"         # Limita a memória do container
+    mem_reservation: "4g"   # Reserva a memória do container
+    cpus: "4"               # Limita o uso de CPU
+    ports:
+      - "5455:5432"         # Mapeia a porta 5455 do host para a porta 5432 do container
+    volumes:
+      - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
+      
+    environment: # Variáveis de ambiente
+      POSTGRES_USER: ${POSTGRES_USER} # Usuário do banco de dados
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Senha do banco de dados
+      POSTGRES_DB: ${POSTGRES_DB} # Nome do banco de dados
+
+    command: # Comando de inicialização do container
+      - postgres    # Executa o PostgreSQL
+      - "-c"
+      - "shared_buffers=2GB"                  # Memória para armazenar páginas de dados em cache
+      - "-c"
+      - "work_mem=64MB"                       # Memória para operações de ordenação e hash (por sessão)
+      - "-c"
+      - "maintenance_work_mem=512MB"          # Memória para operações de manutenção (vacuum, indexação)
+      - "-c"
+      - "wal_buffers=16MB"                    # Cache para gravações do WAL
+      - "-c"
+      - "effective_cache_size=6GB"            # Estimativa da memória que o PostgreSQL pode usar para cache de disco
+      - "-c"
+      - "max_wal_size=4GB"                    # Tamanho máximo dos logs de transação (WAL)
+      - "-c"
+      - "checkpoint_completion_target=0.9"    # Define o percentual do tempo gasto entre checkpoints
+      - "-c"
+      - "autovacuum_vacuum_scale_factor=0.01" # Configuração agressiva para autovacuum
+      - "-c"
+      - "parallel_workers=4"                  # Número de workers paralelos
+      - "-c"
+      - "max_parallel_workers_per_gather=4"   # Máximo de workers paralelos por consulta
+    sysctls:
+      kernel.shmmax: 268435456        # Aumenta o tamanho máximo de um segmento de memória compartilhada
+      kernel.shmall: 2097152          # Ajusta o total de memória compartilhada disponível
+      net.core.somaxconn: 1024        # Aumenta a fila de conexões pendentes
+      vm.dirty_ratio: 20              # Porcentagem da memória suja que pode ser usada
+      vm.dirty_background_ratio: 10   # Porcentagem da memória suja que pode ser usada em background
+    tmpfs:
+      - /tmp                          # Monta um sistema de arquivos temporário na memória RAM
+    logging:
+      driver: "json-file"             # Driver de logs
+      options:
+        max-size: "10m"               # Tamanho máximo do arquivo de log
+        max-file: "5"                 # Número máximo de arquivos de log
+volumes:
+  data_volume:

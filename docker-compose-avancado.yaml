@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_advanced
+    restart: always
+    shm_size: "512m"     # Aumenta o tamanho da memória compartilhada
+    ulimits:
+      nproc: 65535       # Número máximo de processos
+      nofile:            # Número máximo de arquivos abertos
+        soft: 8192       # Limite "soft" de arquivos abertos
+        hard: 16384      # Limite "hard" de arquivos abertos
+    sysctls:                      # Configurações do kernel
+      net.core.somaxconn: 1024    # Aumenta a fila de conexões pendentes
+      kernel.shmmax: 268435456    # Aumenta o tamanho máximo de um segmento de memória compartilhada
+      kernel.shmall: 2097152      # Ajusta o total de memória compartilhada disponível
+    mem_limit: "2g"           # Limita a memória do container
+    mem_reservation: "1g"     # Reserva a memória do container
+    cpus: "1.5"               # Limita o uso de CPU
+    ports:
+      - "5455:5432"           # Mapeia a porta 5455 do host para a porta 5432 do container
+    volumes:
+      - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
+    environment:                              # Variáveis de ambiente
+      POSTGRES_USER: ${POSTGRES_USER} # Usuário do banco de dados
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Senha do banco de dados
+      POSTGRES_DB: ${POSTGRES_DB} # Nome do banco de dados
+    tmpfs:
+      - /tmp # Monta um sistema de arquivos temporário na memória RAM
+    logging: # Configuração de logs
+      driver: "json-file" # Driver de logs
+      options:
+        max-size: "10m" # Tamanho máximo do arquivo de log
+        max-file: "50" # Número máximo de arquivos de log
