@@ -32,8 +32,7 @@ PGDATA=./data
 
 ---
 
-## Inclua no .gitignore:
-
+### Inclua no .gitignore:
 Adicione a seguinte linha ao seu arquivo `.gitignore`:
 
 gitignore
@@ -43,14 +42,12 @@ CopyEdit
 ---
 
 ##  Recomendações
-
 * **PostgreSQL:** Leia a documentação oficial para entender as configurações avançadas e otimizar o desempenho e a segurança do banco de dados.
 * **Docker:** Consulte a documentação oficial para ajustar corretamente os parâmetros do `docker-compose.yml`.
 
 ---
 
 ##  Como Usar
-
 1. **Clone o repositório:**
    ```bash
    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
@@ -63,7 +60,6 @@ docker-compose up -d
 ---
 
 ## Licença
-
 * **Sem garantias:** O código é fornecido "como está", sem qualquer garantia de funcionamento ou adequação a um propósito específico.
 * **Fins educacionais:** O código deve ser utilizado apenas para aprendizado e demonstração, não para produção.
 * **Uso responsável:** O usuário é o único responsável por utilizar o código de forma ética e legal.
