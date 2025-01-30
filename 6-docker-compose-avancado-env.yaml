@@ -20,7 +20,7 @@ services:
     ports:
       - "5438:5432"
     volumes:
-      - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
+      - "${PGDATA6}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}

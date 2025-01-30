@@ -20,7 +20,7 @@ services:
     ports:
       - "5437:5432"           # Mapeia a porta 5455 do host para a porta 5432 do container
     volumes:
-      - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
+      - "${PGDATA5}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
     environment:                              # Variáveis de ambiente
       POSTGRES_USER: ${POSTGRES_USER} # Usuário do banco de dados
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Senha do banco de dados

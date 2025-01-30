@@ -11,7 +11,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ~/Projetos/volumes-docker/postgres-aula/data:/var/lib/postgresql/data
+      - ~/Projetos/volumes-docker/postgres-aula/data1:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s

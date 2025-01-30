@@ -12,8 +12,8 @@ services:
       POSTGRES_DB: meu_banco
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - ~/Projetos/volumes-docker/postgres-aula/data:/var/lib/postgresql/data
-      - ~/Projetos/volumes-docker/postgres-aula/init-scripts:/docker-entrypoint-initdb.d
+      - ~/Projetos/volumes-docker/postgres-aula/data3:/var/lib/postgresql/data
+      - ~/Projetos/volumes-docker/postgres-aula/data3/init-scripts:/docker-entrypoint-initdb.d
     networks:
       - minha_rede
     command: postgres -c 'config_file=/custom-config/postgresql.conf'
