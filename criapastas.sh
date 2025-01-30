@@ -1,2 +1,2 @@
-# rm -r ~/Projetos/volumes-docker/postgres-missoes/
-mkdir -p ~/Projetos/volumes-docker/postgres-missoes/
+rm -r ~/Projetos/volumes-docker/postgres-aula
+mkdir -p ~/Projetos/volumes-docker/postgres-aula/data

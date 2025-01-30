@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres-aula
     # image: postgres:13
-    container_name: postgres-missoes
+    container_name: postgres-aula-env
     # env_file: .env  # Carrega as variáveis do arquivo .env
     shm_size: 512mb
     restart: always
@@ -16,7 +16,7 @@ services:
     ports:
       - '8090:5432'
     volumes:
-      - ~/Projetos/volumes-docker/postgres-missoes/:/var/lib/postgresql/data
+      - ~/Projetos/volumes-docker/postgres-aula/data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s

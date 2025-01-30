@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres-aula
     # image: postgres:13
-    container_name: postgres_advanced
+    container_name: postgres-aula-avancado-env
     restart: always
     shm_size: "512m"
     ulimits:

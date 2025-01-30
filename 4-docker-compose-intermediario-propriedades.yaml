@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres-aula
     # image: postgres:13
-    container_name: postgres_advanced
+    container_name: postgres-aula-interm-propriedades
     restart: always
     shm_size: "512m"                  # Aumenta o tamanho da memória compartilhada
     ulimits:
@@ -20,7 +20,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ~/Projetos/volumes-docker/postgres-aula/data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
