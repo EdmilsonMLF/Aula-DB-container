@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres-aula
-    # image: postgres:13
+    # image: postgres:16
     container_name: postgres-aula-interm-propriedades
     restart: always
     shm_size: "512m"                  # Aumenta o tamanho da memória compartilhada

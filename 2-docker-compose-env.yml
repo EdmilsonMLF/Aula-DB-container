@@ -1,18 +1,14 @@
 services:
   postgres:
     image: postgres-aula
-    # image: postgres:13
     container_name: postgres-aula-env
-    # env_file: .env  # Carrega as variáveis do arquivo .env
+    env_file: .env  # Carrega as variáveis do arquivo .env
     shm_size: 512mb
     restart: always
     environment:
       POSTGRES_USER: $POSTGRES_USER
-      # POSTGRES_USER: postgres
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-      # POSTGRES_PASSWORD: sua_senha
       POSTGRES_DB: $POSTGRES_DB
-      # POSTGRES_DB: postgres
     ports:
       - '5432:5432'
     volumes:
