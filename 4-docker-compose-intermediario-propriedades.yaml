@@ -18,7 +18,7 @@ services:
     mem_reservation: "1g"
     cpus: "1.5"
     ports:
-      - "5432:5432"
+      - "5436:5432"
     volumes:
       - ~/Projetos/volumes-docker/postgres-aula/data:/var/lib/postgresql/data
     environment:

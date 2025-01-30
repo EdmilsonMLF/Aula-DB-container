@@ -18,7 +18,7 @@ services:
     mem_reservation: "1g"
     cpus: "1.5"
     ports:
-      - "5432:5432"
+      - "5438:5432"
     volumes:
       - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
     environment:

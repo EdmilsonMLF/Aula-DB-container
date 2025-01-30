@@ -18,7 +18,7 @@ services:
     mem_reservation: "1g"     # Reserva a memória do container
     cpus: "1.5"               # Limita o uso de CPU
     ports:
-      - "5455:5432"           # Mapeia a porta 5455 do host para a porta 5432 do container
+      - "5437:5432"           # Mapeia a porta 5455 do host para a porta 5432 do container
     volumes:
       - "${PGDATA}:/var/lib/postgresql/data"  # Mapeamento do volume usando variável do .env
     environment:                              # Variáveis de ambiente

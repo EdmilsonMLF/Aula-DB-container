@@ -5,7 +5,7 @@ services:
     container_name: postgres-aula-interm
     restart: always
     ports:
-      - "5432:5432"
+      - "5435:5432"
     environment:
       POSTGRES_USER: meu_usuario
       POSTGRES_PASSWORD: minha_senha
