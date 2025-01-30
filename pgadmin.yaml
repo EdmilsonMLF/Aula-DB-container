@@ -1,0 +1,14 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:latest # Última versão do pgAdmin
+    container_name: pgadmin
+    ports:
+      - "8080:80" # Mapeia a porta 80 do container para a porta 8080 do host
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com # E-mail para login
+      PGADMIN_DEFAULT_PASSWORD: admin # Senha para login
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin # Persistência de dados do pgAdmin
+
+volumes:
+  pgadmin-data:
