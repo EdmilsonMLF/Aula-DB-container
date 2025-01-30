@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: sua_senha
       POSTGRES_DB: postgres
     ports:
-      - '5432:5432'
+      - '8090:5432'
     volumes:
       - ~/Projetos/volumes-docker/postgres-aula/data:/var/lib/postgresql/data
     healthcheck:
